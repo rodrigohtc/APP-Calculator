@@ -33,7 +33,6 @@ struct ContentView: View {
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 100, alignment: .topLeading)
             .background(primaryColor)
             VStack {
-                //Spacer(minLength: 48)
                 VStack {
                     ForEach(rows, id: \.self) { row in
                         HStack(alignment: .top, spacing: 0) {
@@ -55,21 +54,21 @@ struct ContentView: View {
                                             if !checkIfOperator(str: self.calExpression[self.calExpression.count-1]) {
                                                 self.calExpression.remove(at: self.calExpression.count-1)
                                             }
-
+                                            
                                             self.calExpression.append(self.noBeingEntered)
                                         }
                                     }
-
+                                    
                                     self.finalValue = processExpression(exp: self.calExpression)
                                     
                                     if self.calExpression.count > 3 {
                                         self.calExpression = [self.finalValue, self.calExpression[self.calExpression.count - 1]]
                                     }
-
+                                    
                                 }, label: {
                                     Text(column)
-                                    .font(.system(size: getFontSize(btnTxt: column)))
-                                    .frame(idealWidth: 100, maxWidth: .infinity, idealHeight: 100, maxHeight: .infinity, alignment: .center)
+                                        .font(.system(size: getFontSize(btnTxt: column)))
+                                        .frame(idealWidth: 100, maxWidth: .infinity, idealHeight: 100, maxHeight: .infinity, alignment: .center)
                                 }
                                 )
                                 .foregroundColor(Color.white)
@@ -129,11 +128,11 @@ func flattenTheExpression(exps: [String]) -> String {
 func processExpression(exp:[String]) -> String {
     
     if exp.count < 3 {
-        return "0.0"    // Less than 3 means that expression doesnt contain the 2nd no.
+        return "0.0"
     }
     
-    var a = Double(exp[0])  // Get the first no
-    var c = Double("0.0")   // Init the second no
+    var a = Double(exp[0])
+    var c = Double("0.0")  
     let expSize = exp.count
     
     for i in (1...expSize-2) {
